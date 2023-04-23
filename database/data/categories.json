@@ -1,0 +1,112 @@
+{
+  "categories": [
+    {
+      "_id": "643bb66a9e3ba41bc64940a1",
+      "name": "fruit",
+      "isActive": true,
+      "icon": "🍇",
+      "createdAt": "2023-04-16T08:48:42.123Z",
+      "updatedAt": "2023-04-16T08:48:42.123Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb6799e3ba41bc64940a4",
+      "name": "pizza",
+      "isActive": true,
+      "icon": "🍕",
+      "createdAt": "2023-04-16T08:48:57.965Z",
+      "updatedAt": "2023-04-16T08:48:57.965Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb68a9e3ba41bc64940a7",
+      "name": "drinks",
+      "isActive": true,
+      "icon": "🍹",
+      "createdAt": "2023-04-16T08:49:14.051Z",
+      "updatedAt": "2023-04-16T08:49:14.051Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb6b39e3ba41bc64940aa",
+      "name": "meat",
+      "isActive": true,
+      "icon": "🥩",
+      "createdAt": "2023-04-16T08:49:55.786Z",
+      "updatedAt": "2023-04-16T08:49:55.786Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb6cc9e3ba41bc64940ad",
+      "name": "fish",
+      "isActive": true,
+      "icon": "🦈",
+      "createdAt": "2023-04-16T08:50:20.647Z",
+      "updatedAt": "2023-04-16T08:50:20.647Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb7019e3ba41bc64940b0",
+      "name": "lunch",
+      "isActive": true,
+      "icon": "🍜",
+      "createdAt": "2023-04-16T08:51:13.930Z",
+      "updatedAt": "2023-04-16T08:51:13.930Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb7249e3ba41bc64940b3",
+      "name": "breakfast",
+      "isActive": true,
+      "icon": "🍳",
+      "createdAt": "2023-04-16T08:51:48.403Z",
+      "updatedAt": "2023-04-16T08:51:48.403Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb7409e3ba41bc64940b7",
+      "name": "dinner",
+      "isActive": true,
+      "icon": "🍝",
+      "createdAt": "2023-04-16T08:52:16.377Z",
+      "updatedAt": "2023-04-16T08:52:16.377Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bba00db35403182a6d1af",
+      "name": "indian",
+      "isActive": true,
+      "icon": "🍛",
+      "createdAt": "2023-04-16T09:04:00.538Z",
+      "updatedAt": "2023-04-16T09:04:00.538Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bba2bdb35403182a6d1b2",
+      "name": "american",
+      "isActive": true,
+      "icon": "🍳",
+      "createdAt": "2023-04-16T09:04:43.792Z",
+      "updatedAt": "2023-04-16T09:04:43.792Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bba3fdb35403182a6d1b5",
+      "name": "chineese",
+      "isActive": true,
+      "icon": "🍙",
+      "createdAt": "2023-04-16T09:05:03.177Z",
+      "updatedAt": "2023-04-16T09:05:03.177Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bba59db35403182a6d1b8",
+      "name": "japaneese",
+      "isActive": true,
+      "icon": "🍥",
+      "createdAt": "2023-04-16T09:05:29.535Z",
+      "updatedAt": "2023-04-16T09:05:29.535Z",
+      "__v": 0
+    }
+  ]
+}

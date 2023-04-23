@@ -1,0 +1,260 @@
+{
+  "products": [
+    {
+      "_id": "643bb93fdb35403182a6d19b",
+      "name": "Havana Pizza",
+      "price": "499",
+      "size": "medium",
+      "description": "This is a special pizza from Havana.",
+      "details": "With added cheese and special salts from the sea of Havana seas.",
+      "image": "public\\1681635647489.png",
+      "images": [
+        "public\\1681635647506.png",
+        "public\\1681635647509.png",
+        "public\\1681635647512.png",
+        "public\\1681635647513.png"
+      ],
+      "isFeatured": "true",
+      "isActive": true,
+      "category": {
+        "_id": "643bb6799e3ba41bc64940a4",
+        "name": "pizza",
+        "isActive": true,
+        "icon": "🍕",
+        "createdAt": "2023-04-16T08:48:57.965Z",
+        "updatedAt": "2023-04-16T08:48:57.965Z",
+        "__v": 0
+      },
+      "countInStock": 20,
+      "ratings": 9,
+      "discount": "10%",
+      "createdAt": "2023-04-16T09:00:47.659Z",
+      "updatedAt": "2023-04-16T09:00:47.659Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb9aadb35403182a6d1a0",
+      "name": "Peproni Pizza",
+      "price": "599",
+      "size": "large",
+      "description": "A special peproni large pizza.",
+      "details": "With added cheese and special salts from the sea of Arabic ocean.",
+      "image": "public\\1681635754338.png",
+      "images": [
+        "public\\1681635754352.png",
+        "public\\1681635754353.png",
+        "public\\1681635754354.png",
+        "public\\1681635754355.png"
+      ],
+      "isFeatured": "true",
+      "isActive": true,
+      "category": {
+        "_id": "643bb6799e3ba41bc64940a4",
+        "name": "pizza",
+        "isActive": true,
+        "icon": "🍕",
+        "createdAt": "2023-04-16T08:48:57.965Z",
+        "updatedAt": "2023-04-16T08:48:57.965Z",
+        "__v": 0
+      },
+      "countInStock": 25,
+      "ratings": 10,
+      "discount": "10%",
+      "createdAt": "2023-04-16T09:02:34.398Z",
+      "updatedAt": "2023-04-16T09:02:34.398Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb9c1db35403182a6d1a3",
+      "name": "Peproni Pizza",
+      "price": "599",
+      "size": "large",
+      "description": "A special peproni large pizza.",
+      "details": "With added cheese and special salts from the sea of Arabic ocean.",
+      "image": "public\\1681635777759.png",
+      "images": [
+        "public\\1681635777774.png",
+        "public\\1681635777774.png",
+        "public\\1681635777775.png",
+        "public\\1681635777776.png"
+      ],
+      "isFeatured": "true",
+      "isActive": true,
+      "category": {
+        "_id": "643bb6799e3ba41bc64940a4",
+        "name": "pizza",
+        "isActive": true,
+        "icon": "🍕",
+        "createdAt": "2023-04-16T08:48:57.965Z",
+        "updatedAt": "2023-04-16T08:48:57.965Z",
+        "__v": 0
+      },
+      "countInStock": 25,
+      "ratings": 10,
+      "discount": "10%",
+      "createdAt": "2023-04-16T09:02:57.809Z",
+      "updatedAt": "2023-04-16T09:02:57.809Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb9c2db35403182a6d1a6",
+      "name": "Peproni Pizza",
+      "price": "599",
+      "size": "large",
+      "description": "A special peproni large pizza.",
+      "details": "With added cheese and special salts from the sea of Arabic ocean.",
+      "image": "public\\1681635778760.png",
+      "images": [
+        "public\\1681635778798.png",
+        "public\\1681635778799.png",
+        "public\\1681635778800.png",
+        "public\\1681635778807.png"
+      ],
+      "isFeatured": "true",
+      "isActive": true,
+      "category": {
+        "_id": "643bb6799e3ba41bc64940a4",
+        "name": "pizza",
+        "isActive": true,
+        "icon": "🍕",
+        "createdAt": "2023-04-16T08:48:57.965Z",
+        "updatedAt": "2023-04-16T08:48:57.965Z",
+        "__v": 0
+      },
+      "countInStock": 25,
+      "ratings": 10,
+      "discount": "10%",
+      "createdAt": "2023-04-16T09:02:58.830Z",
+      "updatedAt": "2023-04-16T09:02:58.830Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb9c3db35403182a6d1a9",
+      "name": "Peproni Pizza",
+      "price": "599",
+      "size": "large",
+      "description": "A special peproni large pizza.",
+      "details": "With added cheese and special salts from the sea of Arabic ocean.",
+      "image": "public\\1681635779614.png",
+      "images": [
+        "public\\1681635779625.png",
+        "public\\1681635779626.png",
+        "public\\1681635779628.png",
+        "public\\1681635779628.png"
+      ],
+      "isFeatured": "true",
+      "isActive": true,
+      "category": {
+        "_id": "643bb6799e3ba41bc64940a4",
+        "name": "pizza",
+        "isActive": true,
+        "icon": "🍕",
+        "createdAt": "2023-04-16T08:48:57.965Z",
+        "updatedAt": "2023-04-16T08:48:57.965Z",
+        "__v": 0
+      },
+      "countInStock": 25,
+      "ratings": 10,
+      "discount": "10%",
+      "createdAt": "2023-04-16T09:02:59.655Z",
+      "updatedAt": "2023-04-16T09:02:59.655Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bb9dbdb35403182a6d1ac",
+      "name": "Indian Pizza ",
+      "price": "599",
+      "size": "large",
+      "description": "A special peproni large pizza.",
+      "details": "With added cheese and special salts from the sea of Arabic ocean.",
+      "image": "public\\1681635803959.png",
+      "images": [
+        "public\\1681635803972.png",
+        "public\\1681635803972.png",
+        "public\\1681635803973.png",
+        "public\\1681635803973.png"
+      ],
+      "isFeatured": "true",
+      "isActive": true,
+      "category": {
+        "_id": "643bb6799e3ba41bc64940a4",
+        "name": "pizza",
+        "isActive": true,
+        "icon": "🍕",
+        "createdAt": "2023-04-16T08:48:57.965Z",
+        "updatedAt": "2023-04-16T08:48:57.965Z",
+        "__v": 0
+      },
+      "countInStock": 25,
+      "ratings": 10,
+      "discount": "10%",
+      "createdAt": "2023-04-16T09:03:23.996Z",
+      "updatedAt": "2023-04-16T09:03:23.996Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bbb14d9478ae2bdc56934",
+      "name": "Indian Rice ",
+      "price": "399",
+      "size": "large",
+      "description": "A special oven rice for indian food lovers.",
+      "details": "rice served with mutton and fish curry for the non veg lovers.",
+      "image": "public\\1681636116666.png",
+      "images": [
+        "public\\1681636116683.png",
+        "public\\1681636116684.png",
+        "public\\1681636116687.png",
+        "public\\1681636116688.png"
+      ],
+      "isFeatured": "true",
+      "isActive": true,
+      "category": {
+        "_id": "643bba00db35403182a6d1af",
+        "name": "indian",
+        "isActive": true,
+        "icon": "🍛",
+        "createdAt": "2023-04-16T09:04:00.538Z",
+        "updatedAt": "2023-04-16T09:04:00.538Z",
+        "__v": 0
+      },
+      "countInStock": 100,
+      "ratings": 10,
+      "discount": "10%",
+      "createdAt": "2023-04-16T09:08:36.832Z",
+      "updatedAt": "2023-04-16T09:08:36.832Z",
+      "__v": 0
+    },
+    {
+      "_id": "643bbb72d9478ae2bdc56937",
+      "name": "Japaneese sushi",
+      "price": "249",
+      "size": "large",
+      "description": "A special sushi for indian food lovers.",
+      "details": "a very speacial sushi 🍥",
+      "image": "public\\1681636210031.png",
+      "images": [
+        "public\\1681636210042.png",
+        "public\\1681636210043.png",
+        "public\\1681636210045.png",
+        "public\\1681636210047.png"
+      ],
+      "isFeatured": "false",
+      "isActive": true,
+      "category": {
+        "_id": "643bba59db35403182a6d1b8",
+        "name": "japaneese",
+        "isActive": true,
+        "icon": "🍥",
+        "createdAt": "2023-04-16T09:05:29.535Z",
+        "updatedAt": "2023-04-16T09:05:29.535Z",
+        "__v": 0
+      },
+      "countInStock": 100,
+      "ratings": 10,
+      "discount": "10%",
+      "createdAt": "2023-04-16T09:10:10.089Z",
+      "updatedAt": "2023-04-16T09:10:10.089Z",
+      "__v": 0
+    }
+  ]
+}
