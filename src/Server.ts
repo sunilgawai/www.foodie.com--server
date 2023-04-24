@@ -1,10 +1,10 @@
 import express, { Application } from "express";
 import DataBase from "../database/DataBase";
 import { APP_PORT } from "../config";
-import authRouter from "./routes/AuthRouter";
 import { errorHandler } from "./middlewares";
-import { adminRouter, userRouter } from "./routes";
+import { adminRouter, authRouter, userRouter } from "./routes";
 import cors from "cors";
+import morgan from "morgan";
 
 // Application init.
 const app: Application = express();
@@ -13,13 +13,14 @@ const app: Application = express();
 DataBase.connectToDB();
 
 // Middlewares.
-// const cors_opts = { origin: 'http://localhost:3000', optionsSuccessStatus: 200 }
+// const cors_opts = { origin: 'http://localhost:3300', optionsSuccessStatus: 200 }
 app.use(cors({
     origin: '*',
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     preflightContinue: false,
     optionsSuccessStatus: 204
 }))
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 

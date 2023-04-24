@@ -1,22 +1,16 @@
-import { NextFunction, Request, Response } from "express";
-import Validate from "../../validators";
+import { Request, Response, NextFunction } from "express";
 import { Order, OrderItem, User } from "../../models";
 import { CustomErrorHandler } from "../../services";
+import Validate from "../../validators";
 
 class OrderController {
     public async store(req: Request, res: Response, next: NextFunction) {
-        const items = req.body.items as {
-            products: {
-                [_id: string]: number
-            },
-            totalQty: number
-        }
         // Validate request.
         const { error } = Validate.post_order_request(req.body);
         if (error) {
             return next(error);
         }
-
+        
         // Get User.
         let user
         try {
@@ -24,17 +18,24 @@ class OrderController {
         } catch (error) {
             return next(error);
         }
-
         if (!user) {
             return next(CustomErrorHandler.unAuthorized());
         }
+
         // Create Order Items.
-        let items_keys = Object.keys(items.products);
+        const cart = req.body.items as {
+            products: {
+                [_id: string]: number
+            },
+            totalQty: number
+        }
+
+        let items_keys = Object.keys(cart.products);
 
         let order_items_ids = Promise.all(items_keys.map(async (key: string) => {
             let orderItem = new OrderItem({
                 product: key,
-                quantity: items.products[key]
+                quantity: cart.products[key]
             })
             let saved_item = await orderItem.save();
             if(!saved_item) {
@@ -42,14 +43,9 @@ class OrderController {
             }
             return saved_item._id;
         }))
-
+        // Need to get resolved ids from above promise.
         let resolved_items = await order_items_ids;
 
-        try {
-            console.log(resolved_items)
-        } catch (error) {
-            return next(error);
-        }
         // Create Order.
         const order = new Order({
             user_id: user._id,
@@ -58,7 +54,7 @@ class OrderController {
             payment_type: req.body.payment_type,
             payment_done: req.body.payment_done,
             total_price: req.body.total_price, // Needs to get this price from database. not from user.
-            shipping_address: user.address[0], // This address is from user's added addresses.
+            shipping_address: user.address[0], // This address is from user's saved addresses.
             message: req.body.message
         })
         // Place/Save Order.
@@ -89,23 +85,7 @@ class OrderController {
         }
 
         // Response to user.
-        res.status(200).json({ message: "Order Placed Sucessfuly" })
-    } 
-
-    public async getAll(req: Request, res: Response, next: NextFunction) {
-        let orders;
-        try {
-            orders = await Order.find().populate('user_id', 'shipping_address')
-                .populate({
-                    path: 'items', populate: 'product'
-                })
-            if (!orders) {
-                return next(CustomErrorHandler.notFound("Orders Not Found"));
-            }
-        } catch (error) {
-            return next(error);
-        }
-        res.status(200).json({ orders });
+        res.status(200).json({ message: "Order Placed Sucessfuly.", order: order_result })
     }
 
     public async get(req: Request, res: Response, next: NextFunction) {
@@ -125,7 +105,8 @@ class OrderController {
         res.status(200).json({ order });
     }
 
-    public async delete(req: Request, res: Response, next: NextFunction) {
+    public async cancel(req: Request, res: Response, next: NextFunction) {
+        // Needs to work in this field as user cannot delete order if it is in progress.
         const _id = req.params._id;
         let deleted;
         try {
@@ -139,9 +120,25 @@ class OrderController {
         res.status(200).json({ message: "Order Successfully deleted", order: deleted });
     }
 
+    public async getAll(req: Request, res: Response, next: NextFunction) {
+        let orders;
+        try {
+            orders = await Order.find().populate('user_id', 'shipping_address')
+                .populate({
+                    path: 'items', populate: 'product'
+                })
+            if (!orders) {
+                return next(CustomErrorHandler.notFound("Orders Not Found"));
+            }
+        } catch (error) {
+            return next(error);
+        }
+        res.status(200).json({ orders });
+    }
+
     // Here customer will only get order history where he placed orders and not all 
     // orders from DataBase.
-    public async history(req: Request, res: Response, next: NextFunction) {
+    public async get_history(req: Request, res: Response, next: NextFunction) {
         console.log(req)
         let history, user;
         try {
@@ -174,4 +171,4 @@ class OrderController {
     }
 }
 
-export default new OrderController();
+export default new OrderController;
