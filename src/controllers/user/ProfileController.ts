@@ -20,3 +20,5 @@ class ProfileController {
         res.status(200).json({ profile });
     }
 }
+
+export default new ProfileController();

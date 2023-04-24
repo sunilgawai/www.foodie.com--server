@@ -22,7 +22,7 @@ app.use(cors({
 }))
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 
 // Init Routes.
 app.use('/api/auth', authRouter);

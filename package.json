@@ -33,6 +33,7 @@
     "@dicebear/core": "^6.0.2",
     "@resvg/resvg-js": "^2.0.0",
     "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "esm": "^3.2.25",

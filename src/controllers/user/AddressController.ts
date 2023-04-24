@@ -36,8 +36,8 @@ class AddressController {
             latitude: req.body.latitude ? req.body.latitude : undefined,
             longitude: req.body.longitude ? req.body.longitude : undefined
         });
-        let saved_address;
 
+        let saved_address;
         try {
             saved_address = await address.save();
             await user.updateOne({
@@ -49,7 +49,7 @@ class AddressController {
             return next(error);
         }
 
-        res.status(200).json({ updated_address: saved_address });
+        res.status(200).json({ message: "Address Successfuly Saved.", updated_address: saved_address });
     }
 
     public async remove(req: Request, res: Response, next: NextFunction) {
@@ -76,7 +76,7 @@ class AddressController {
         } catch (error) {
             return next(error);
         }
-        res.status(200).json({ message: "address deleted" });
+        res.status(200).json({ message: "Address Successfuly Deleted." });
     }
 }
 

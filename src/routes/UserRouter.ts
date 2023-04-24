@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { auth } from "../middlewares";
-import { UserController } from "../controllers";
+import { AddressController, ProfileController, UserController, WishListController } from "../controllers";
 import OrderController from "../controllers/common/OrderController";
 
 class UserRouter {
@@ -17,7 +17,7 @@ class UserRouter {
         /**
          * Get Profile Details.
          */
-        this.userRouter.get('/profile', auth, UserController.get_profile);
+        this.userRouter.get('/profile', auth, ProfileController.get);
 
         /**
          * Update Profile Details.
@@ -39,24 +39,24 @@ class UserRouter {
         /**
          * Create/Store address.
          */
-        this.userRouter.post('/address', auth, UserController.post_address);
+        this.userRouter.post('/address', auth, AddressController.store);
 
         /**
          * Get address list.
          */
-        this.userRouter.delete('/address/:_id', auth, UserController.delete_address);
+        this.userRouter.delete('/address/:_id', auth, AddressController.remove);
     }
 
     private initWishlistRoutes() {
         /**
          * Add product to wishlist.
          */
-        this.userRouter.post('/wishlist', auth, UserController.add_to_wishlist);
+        this.userRouter.post('/wishlist', auth, WishListController.store);
 
         /**
          * Remove product from wishlist
          */
-        this.userRouter.put('/wishlist/:_id', auth, UserController.remove_from_wishlist);
+        this.userRouter.put('/wishlist/:_id', auth, WishListController.remove);
     }
 
     private initOrderRoutes() {

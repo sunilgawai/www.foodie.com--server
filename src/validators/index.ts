@@ -71,5 +71,5 @@ class Validate {
         message: Joi.string(),
     }).validate(req_body)
 }
-
+export { default as AdminValidation } from "./AdminValidation"
 export default Validate;

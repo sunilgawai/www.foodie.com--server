@@ -1,23 +1,25 @@
 import { NextFunction, Request, Response } from "express";
 import { CustomErrorHandler } from "../../services";
-import Validate from "../../validators";
+import Validate, { AdminValidation } from "../../validators";
 import { Category } from "../../models";
 
 class CategoryController {
     public async store(req: Request, res: Response, next: NextFunction) {
         // Validate the request.
-        const { error } = Validate.admin_category_request(req.body);
+        const { error } = AdminValidation.post_category(req.body);
         if (error) {
             return next(error);
         }
-
+        const { name, isActive } = req.body;
+        const icon = req.file;
+        console.log({body: req.body, file: req.file})
         // Check is category is already exists.
-        let category_available;
+        let category_exists;
         try {
-            category_available = await Category.findOne({
+            category_exists = await Category.findOne({
                 name: req.body.name
             });
-            if (category_available) {
+            if (category_exists) {
                 return next(CustomErrorHandler.alreadyExists("Category already Exists."));
             }
         } catch (error) {
@@ -51,7 +53,7 @@ class CategoryController {
         try {
             _categories = await Category.find();
             if (!_categories) {
-                return next(CustomErrorHandler.serverError());
+                return next(CustomErrorHandler.notFound("Categories not found."));
             }
         } catch (error) {
             return next(error);
