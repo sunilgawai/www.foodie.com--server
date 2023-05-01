@@ -12,7 +12,9 @@ class CategoryController {
         }
         const { name, isActive } = req.body;
         const icon = req.file;
-        console.log({body: req.body, file: req.file})
+        if(!icon) {
+            return next(CustomErrorHandler.notFound("Icon not found. Please ensure you have sent an icon."))
+        }
         // Check is category is already exists.
         let category_exists;
         try {
@@ -30,7 +32,7 @@ class CategoryController {
         const category = new Category({
             name: req.body.name,
             isActive: req.body.isActive,
-            icon: req.body.icon
+            icon: icon.path
         })
 
         // Save the category.
@@ -63,13 +65,12 @@ class CategoryController {
     }
 
     public async update(req: Request, res: Response, next: NextFunction) {
-        const { _id, name, isActive, icon } = req.body;
+        const { name, isActive } = req.body;
         console.log(req.body);
         try {
-            const result = await Category.findByIdAndUpdate({ _id }, {
+            const result = await Category.findByIdAndUpdate({ _id: req.params._id }, {
                 name: name,
-                isActive: isActive,
-                icon: icon
+                isActive: isActive
             })
             if (!result) {
                 return next(CustomErrorHandler.serverError());
@@ -85,10 +86,10 @@ class CategoryController {
     }
 
     public async delete(req: Request, res: Response, next: NextFunction) {
-        const _id = req.body._id;
+        let results;
         try {
-            const result = await Category.findByIdAndDelete({ _id });
-            if (!result) {
+            results = await Category.findByIdAndDelete({ _id: req.params._id });
+            if (!results) {
                 return next(CustomErrorHandler.serverError());
             }
         } catch (error) {
@@ -97,7 +98,7 @@ class CategoryController {
 
         res.status(200).json({
             status: "ok",
-            message: "Category deleted succesfully"
+            message: `Category ${results.name} is deleted succesfully`
         })
     }
 }

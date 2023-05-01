@@ -26,7 +26,7 @@ const productSchema = new Schema({
         type: String,
         required: true,
         get: (image: string) => {
-            // Needs to ass Hosting URL in production.
+            // Needs to pass Hosting URL in production.
             return `${'http://localhost:'}${APP_PORT}${image}`;
         }
     },
@@ -34,7 +34,7 @@ const productSchema = new Schema({
         type: String,
         required: true,
         get: (image: string) => {
-            // Needs to ass Hosting URL in production.
+            // Needs to pass Hosting URL in production.
             return `${'http://localhost:'}${APP_PORT}${image}`;
         }
     }],

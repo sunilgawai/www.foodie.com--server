@@ -17,7 +17,7 @@ class AuthRouter {
         /**
          * Store Category.
          */
-        this.adminRouter.post('/category', CategoryController.store);
+        this.adminRouter.post('/category', handleFormData.single('icon'), CategoryController.store);
 
         /**
          * Get Category.
