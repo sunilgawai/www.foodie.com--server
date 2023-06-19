@@ -1,11 +1,15 @@
 import { NextFunction, Request, Response } from "express";
 import { CustomErrorHandler } from "../../services";
-import Validate, { AdminValidation } from "../../validators";
+import { AdminValidation } from "../../validators";
 import { Category } from "../../models";
+import fs from "fs";
+import { APP_PORT } from "../../../config";
 
 class CategoryController {
     public async store(req: Request, res: Response, next: NextFunction) {
         // Validate the request.
+        console.log(req.files);
+        console.log(req.body)
         const { error } = AdminValidation.post_category(req.body);
         if (error) {
             return next(error);
@@ -92,6 +96,14 @@ class CategoryController {
             if (!results) {
                 return next(CustomErrorHandler.serverError());
             }
+            
+            // Needs to delete image from disk/public as we deleting category.
+            // try {
+            //     console.log('path', results.icon)
+            //     fs.unlinkSync(`${results.icon}`);
+            // } catch (error) {
+            //     return next(error);
+            // }
         } catch (error) {
             return next(error);
         }

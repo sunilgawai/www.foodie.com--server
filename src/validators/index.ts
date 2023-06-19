@@ -25,7 +25,7 @@ class Validate {
 
     // Admin requests...
     static admin_product_request = (req_body: object) => Joi.object({
-        name: Joi.string().min(12).max(30).required(),
+        name: Joi.string().max(30).required(),
         price: Joi.string().min(3).max(7).required(),
         size: Joi.string().required(),
         description: Joi.string().min(12).max(300).required(),
