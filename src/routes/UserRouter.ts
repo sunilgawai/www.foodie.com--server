@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { auth } from "../middlewares";
-import { AddressController, ProfileController, UserController, WishListController } from "../controllers";
+import { AddressController, CartController, ProfileController, UserController, WishListController } from "../controllers";
 import OrderController from "../controllers/common/OrderController";
 
 class UserRouter {
@@ -11,6 +11,7 @@ class UserRouter {
         this.initAddressRoutes();
         this.initWishlistRoutes();
         this.initOrderRoutes();
+        this.initCartRoutes();
     }
 
     private initProfileRoutes() {
@@ -65,9 +66,9 @@ class UserRouter {
          */
         this.userRouter.post('/order', auth, OrderController.store);
 
-         /**
-         * Get All Orders.
-         */
+        /**
+        * Get All Orders.
+        */
         this.userRouter.get('/order', auth, OrderController.getAll);
 
         /**
@@ -85,6 +86,20 @@ class UserRouter {
          */
         this.userRouter.get('/order/history', auth, OrderController.history);
 
+    }
+
+    private initCartRoutes() {
+        // Get Cart.
+        this.userRouter.get('/cart', auth, CartController.get);
+
+        // POST Cart.
+        this.userRouter.post('/cart', auth, CartController.add);
+
+        // UPDATE Cart.
+        this.userRouter.put('/cart', auth, CartController.update);
+
+        // DELETE Cart.
+        this.userRouter.delete('/cart', auth, CartController.delete);
     }
 }
 

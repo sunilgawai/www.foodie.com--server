@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { APP_PORT } from "../../config";
+import { APP_PORT, APP_URL } from "../../config";
 
 const productSchema = new Schema({
     name: {
@@ -22,20 +22,20 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-    image: {
-        type: String,
-        required: true,
-        get: (image: string) => {
-            // Needs to pass Hosting URL in production.
-            return `${'http://localhost:'}${APP_PORT}${image}`;
-        }
-    },
+    // image: {
+    //     type: String,
+    //     required: true,
+    //     get: (image: string) => {
+    //         // Needs to pass Hosting URL in production.
+    //         return `${'http://localhost:'}${APP_PORT}${image}`;
+    //     }
+    // },
     images: [{
         type: String,
         required: true,
         get: (image: string) => {
             // Needs to pass Hosting URL in production.
-            return `${'http://localhost:'}${APP_PORT}${image}`;
+            return `${APP_URL}/${image}`;
         }
     }],
     isFeatured: {

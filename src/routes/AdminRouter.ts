@@ -39,7 +39,7 @@ class AuthRouter {
         /**
          * Store Product
          */
-        this.adminRouter.post('/product', handleFormData.fields([{
+        this.adminRouter.post('/products', handleFormData.fields([{
             name: 'image',
             maxCount: 1
         },
@@ -56,12 +56,19 @@ class AuthRouter {
         /**
          * Update Products
          */
-        this.adminRouter.put('/product/:_id');
+        this.adminRouter.put('/products/:_id', handleFormData.fields([{
+            name: 'image',
+            maxCount: 1
+        },
+        {
+            name: 'images',
+            maxCount: 4
+        }]), ProductController.update);
 
         /**
          * Delete Product.
          */
-        this.adminRouter.delete('/product/:_id');
+        this.adminRouter.delete('/products/:_id', ProductController.delete);
     }
 
     private initDiscountCouponRoutes() {

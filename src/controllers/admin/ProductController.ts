@@ -3,6 +3,8 @@ import Validate from "../../validators";
 import { CustomErrorHandler } from "../../services";
 import { Category, Product } from "../../models";
 import { IFile } from "../../typings";
+import fs from "fs";
+import { appRoot } from "../../Server";
 
 class ProductController {
 
@@ -40,10 +42,10 @@ class ProductController {
       return next(CustomErrorHandler.fileNotFound("Images not found. Please provide images."));
     }
 
-    const { image, images } = req.files as unknown as { image: IFile[], images: IFile[] }
+    const { images } = req.files as unknown as { image: IFile[], images: IFile[] }
 
     // Needs to validate following code later.
-    let product_image: string = image[0].path;
+    // let product_image: string = image[0].path;
     let product_images: string[] = [];
 
     images.forEach((file) => {
@@ -64,7 +66,7 @@ class ProductController {
       descount,
       wishlist,
       countInStock,
-      image: product_image,
+      // image: product_image,
       images: product_images
     })
 
@@ -86,7 +88,10 @@ class ProductController {
   public async get(req: Request, res: Response, next: NextFunction) {
     let products;
     try {
-      products = await Product.find().populate('category');
+      products = await Product.find()
+        .select('-__v -createdAt -updatedAt')
+        .populate('category')
+
       if (!products) {
         return next(CustomErrorHandler.notFound("Products not available."))
       }
@@ -97,9 +102,98 @@ class ProductController {
     res.status(200).json({ products });
   }
 
-  public async update(req: Request, res: Response, next: NextFunction) { }
+  public async update(req: Request, res: Response, next: NextFunction) {
+    // Validate the request.
+    const { error } = Validate.admin_product_request(req.body);
+    if (error) {
+      return next(error);
+    }
 
-  public async delete(req: Request, res: Response, next: NextFunction) { }
+    const {
+      name, price, size, description, details,
+      isActive, isFeatured, category, countInStock,
+      ratings, descount, wishlist
+    } = req.body;
+
+    // Check for category.
+    try {
+      let _category = await Category.findById({ _id: category });
+
+      if (!_category) {
+        return next(CustomErrorHandler.notFound("Category Not Found. Please create it first!"));
+      }
+
+    } catch (error) {
+      return next(error);
+    }
+
+    // Check if images are present or not.
+    let product_images: string[] = [];
+    if (req.files) {
+      const { images } = req.files as unknown as { image: IFile[], images: IFile[] }
+
+      // Needs to validate following code later.
+      // let product_image: string = image[0].path;
+
+      images.forEach((file) => {
+        product_images.push(file.path);
+      })
+    }
+
+    let results;
+    try {
+      results = await Product.findByIdAndUpdate({ _id: req.params._id }, {
+        name,
+        price,
+        size,
+        category,
+        description,
+        details,
+        isFeatured,
+        ratings,
+        isActive,
+        descount,
+        wishlist,
+        countInStock,
+        // image: product_image,
+        ...(product_images.length && { images: product_images })
+      }, { new: true })
+    } catch (error) {
+      return next(error);
+    }
+
+    if (!results) {
+      return next(CustomErrorHandler.notFound("Product not found."));
+    }
+
+    return res.status(200).json({ results })
+  }
+
+  public async delete(req: Request, res: Response, next: NextFunction) {
+    let results;
+    try {
+      results = await Product.findByIdAndDelete({ _id: req.params._id });
+      console.log('result after delet', results)
+      if (!results) {
+        return next(CustomErrorHandler.notFound("Product not found."))
+      }
+
+      // Delete all the images from storage.
+      if (results) {
+        console.log('img path', results)
+        results.images.forEach(async (curr, idx) => {
+          console.log('img path', curr)
+          fs.unlink(`${appRoot}/curr`, (err) => {
+            return next(err);
+          })
+        })
+      }
+    } catch (error) {
+      return next(error);
+    }
+    console.log(results);
+    return res.status(200).json({ results })
+  }
 }
 
 export default new ProductController();

@@ -5,7 +5,7 @@ import { errorHandler } from "./middlewares";
 import { adminRouter, authRouter, userRouter } from "./routes";
 import cors from "cors";
 import morgan from "morgan";
-import bodyParser from "body-parser";
+import path from "path";
 
 // Application init.
 const app: Application = express();
@@ -23,13 +23,16 @@ app.use(cors({
 }))
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.urlencoded({ extended: true }));
+// @ts-ignore
+// global.appRoot = path.resolve(__dirname) 
 
+export const appRoot = path.resolve(__dirname, '../');
 // Init Routes.
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/admin', adminRouter);
+app.use('/public', express.static('public'));
 
 
 app.use((req, res) => {
